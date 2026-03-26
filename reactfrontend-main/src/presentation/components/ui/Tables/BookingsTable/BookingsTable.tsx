@@ -1,0 +1,153 @@
+import {useIntl} from "react-intl";
+import {isUndefined} from "lodash";
+import {IconButton, TablePagination, TextField} from "@mui/material";
+import {DataLoadingContainer} from "../../LoadingDisplay";
+import {useBookingsTableController} from "./BookingsTable.controller";
+import {BookingRecord} from "@infrastructure/apis/client";
+import DeleteIcon from '@mui/icons-material/Delete';
+import {BookingAddDialog} from "../../Dialogs/BookingAddDialog";
+import {UserRoleEnum} from "@infrastructure/apis/client";
+import { useOwnUserHasRole, useOwnUser } from "@infrastructure/hooks/useOwnUser";
+import EditIcon from '@mui/icons-material/Edit';
+import {useAppSelector} from "@application/store";
+import {DataTable} from "@presentation/components/ui/Tables/DataTable";
+import { useState } from "react";
+import "/Users/madalinamarcu/Downloads/reactfrontend-main/src/index.css";
+import { BookingEditDialog } from "../../Dialogs/BookingAddDialog/BookingEditDialog";
+
+/**
+ * This hook returns a header for the table with translated columns.
+ */
+const useHeader = (): { key: keyof BookingRecord, name: string, order: number }[] => {
+    const {formatMessage} = useIntl();
+
+    return [
+        
+    ]
+};
+
+/**
+ * The values in the table are organized as rows so this function takes the entries and creates the row values ordering them according to the order map.
+ */
+const getRowValues = (entries: BookingRecord[] | null | undefined, orderMap: { [key: string]: number }) =>
+    entries?.map(
+        entry => {
+            return {
+                entry: entry,
+                data: Object.entries(entry).filter(([e]) => !isUndefined(orderMap[e])).sort(([a], [b]) => orderMap[a] - orderMap[b]).map(([key, value]) => { return {key, value} })
+            }
+        });
+
+/**
+ * Creates the movie table.
+ */
+
+export const BookingsTable = () => {
+    const isAdmin = useOwnUserHasRole(UserRoleEnum.Admin);
+    const isOwnUser = useOwnUser();
+
+    const {formatMessage} = useIntl();
+    const header = useHeader();
+    const [query, setQuery] = useState('');
+    const {handleChangePage, handleChangePageSize, pagedData, isError, isLoading, tryReload, labelDisplay, update, remove} = useBookingsTableController(query); // Use the controller hook.
+    const [isOpenDeleteModal, setOpenDeleteModal] = useState(false);    
+
+    const [editBooking, setEditBooking] = useState<BookingRecord | null>(null);
+    
+    const [bookingIdToDelete, setBookingIdToDelete] = useState('');
+
+    function handleEditBooking(booking: BookingRecord) {
+            setEditBooking(booking);
+           
+    }
+    function handleDeleteUser(id: string) {
+        setBookingIdToDelete(id);
+        setOpenDeleteModal(true);
+    }
+
+    function handleConfirm() {
+        if (bookingIdToDelete) {
+        remove(bookingIdToDelete);
+        setOpenDeleteModal(false);
+        setBookingIdToDelete('');
+        }
+    }
+
+    function handleCancel() {
+        setOpenDeleteModal(false);
+        setBookingIdToDelete('');
+    }
+    return <DataLoadingContainer isError={isError} isLoading={isLoading} tryReload={tryReload}> {/* Wrap the table into the loading container because data will be fetched from the backend and is not immediately available.*/}
+        <BookingAddDialog/> {/* Add the button to open the movie add modal. */}
+        {editBooking && (<BookingEditDialog booking={editBooking} onClose={() => setEditBooking(null)} />)} {/* Add the movie add dialog and pass the edit movie to it if it is set. */}
+        
+        <TextField
+                label = {formatMessage({id: "globals.searchBookings"})}
+                 value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    size="small"
+                    style={{ marginBottom: "10px", width: "300px", marginLeft: "900px" }}/> 
+        {!isUndefined(pagedData) && !isUndefined(pagedData?.totalCount) && !isUndefined(pagedData?.page) && !isUndefined(pagedData?.pageSize) &&
+            <TablePagination // Use the table pagination to add the navigation between the table pages.
+                component="div"
+                count={pagedData.totalCount} // Set the entry count returned from the backend.
+                page={pagedData.totalCount !== 0 ? pagedData.page - 1 : 0} // Set the current page you are on.
+                onPageChange={handleChangePage} // Set the callback to change the current page.
+                rowsPerPage={pagedData.pageSize} // Set the current page size.
+                onRowsPerPageChange={handleChangePageSize} // Set the callback to change the current page size. 
+                labelRowsPerPage={formatMessage({id: "labels.itemsPerPage"})}
+                labelDisplayedRows={labelDisplay}
+                showFirstButton
+                showLastButton
+            />}
+        {isOpenDeleteModal && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h1 style={{ color: 'white' }}>{formatMessage({id: "globals.areYouSure"})}</h1>
+            <p style={{ color: 'white' }}>{formatMessage({id: "globals.confirmDeleteBooking"})}</p>
+            <div className="modal-buttons">
+              <button style={{ backgroundColor: 'white', color: 'black' }} onClick={handleConfirm}>{formatMessage({id: "labels.yes"})}</button>
+              <button style={{ backgroundColor: 'white', color: 'black' }} onClick={handleCancel}>{formatMessage({id: "labels.no"})}</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+        <DataTable data={pagedData?.data ?? []}
+                   header={header}
+                   extraHeader={[
+                    {
+                        key: "user",
+                        name: formatMessage({id: "globals.user"}),
+                        render: (entry: BookingRecord) => <>{entry.user?.email}</>,
+                        order: 0
+                    },
+                    {
+                        key: "movies",
+                        name: formatMessage({id: "globals.movies"}),
+                        render: (entry: BookingRecord) => <>{entry.screening?.movie.title}</>,
+                        order: 1
+                    },
+                    {
+                        key: "halls",
+                        name: formatMessage({id: "globals.halls"}),
+                        render: (entry: BookingRecord) => <>{entry.screening?.hall.name}</>,
+                        order: 2
+                    },
+                    
+                    {
+                       key: "actions",
+                       name: formatMessage({id: "labels.actions"}),
+                       render: entry => <>
+                            {(isAdmin || isOwnUser?.id==entry.user?.id) && <IconButton color="primary" onClick={() => handleEditBooking(entry)}>
+                                <EditIcon color="primary" fontSize="small"/>
+                            </IconButton>}
+                           {(isAdmin || isOwnUser?.id==entry.user?.id)  && <IconButton color="error" onClick={() => handleDeleteUser(entry.id || '')}>
+                               <DeleteIcon color="error" fontSize="small"/>
+                           </IconButton>
+                           }</>,
+                       order: 3
+                   }]}
+        />
+    </DataLoadingContainer>
+}
