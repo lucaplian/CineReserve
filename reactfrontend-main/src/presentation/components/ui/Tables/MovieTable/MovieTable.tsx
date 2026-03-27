@@ -16,7 +16,7 @@ import { AlignHorizontalCenter } from "@mui/icons-material";
 import Popup from 'reactjs-popup';
 import {useMovieAddDialogController} from "../../Dialogs/MovieAddDialog/MovieAddDialog.controller";
 import { MovieAddForm } from "@presentation/components/forms/Movie/MovieAddForm";
-import { MovieEditDialog } from "@presentation/components/ui/Dialogs/MovieAddDialog/MovieEditDIalog";
+import { MovieEditDialog } from "@presentation/components/ui/Dialogs/MovieAddDialog/MovieEditDialog";
 
 import "/Users/madalinamarcu/Downloads/reactfrontend-main/src/index.css";
 /**
@@ -28,7 +28,6 @@ const useHeader = (): { key: keyof MovieRecord, name: string, order: number }[] 
     
 
     return [
-        {key: "id", name: formatMessage({id: "globals.id_movies"}), order: 0},
         {key: "title", name: formatMessage({id: "globals.title"}), order: 1},
         {key: "description", name: formatMessage({id: "globals.description"}), order: 2},
         {key: "duration", name: formatMessage({id: "globals.duration"}), order: 3},

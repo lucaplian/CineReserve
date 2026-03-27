@@ -1,21 +1,26 @@
 import {useIntl} from "react-intl";
 import {isUndefined} from "lodash";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
+
 import {IconButton, TablePagination, TextField} from "@mui/material";
 import {DataLoadingContainer} from "../../LoadingDisplay";
 import {useScreeningsTableController} from "./ScreeningsTable.controller";
 import {ScreeningRecord} from "@infrastructure/apis/client";
 import DeleteIcon from '@mui/icons-material/Delete';
+import CheckIcon from '@mui/icons-material/Check';
 import {ScreeningAddDialog} from "/Users/madalinamarcu/Downloads/reactfrontend-main/src/presentation/components/ui/Dialogs/ScreeningAddDialog/ScreeningAddDialog";
-
+import {BookingAddFormActions} from "@presentation/components/forms/Booking/BookingAddForm.types";
 import {ScreeningEditDialog} from "/Users/madalinamarcu/Downloads/reactfrontend-main/src/presentation/components/ui/Dialogs/ScreeningAddDialog/ScreeningEditDialog";
+import {BookingAddFormModel} from "@presentation/components/forms/Booking/BookingAddForm.types";
 import {UserRoleEnum} from "@infrastructure/apis/client";
 import { useOwnUserHasRole } from "@infrastructure/hooks/useOwnUser";
 import EditIcon from '@mui/icons-material/Edit';
 import {useAppSelector} from "@application/store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {DataTable} from "@presentation/components/ui/Tables/DataTable";
 import "/Users/madalinamarcu/Downloads/reactfrontend-main/src/index.css";
 
+import { useBookingAddFormController2 } from "../../../forms/Booking/BookingAddForm.controller";
 /**
  * This hook returns a header for the table with translated columns.
  */
@@ -23,7 +28,6 @@ const useHeader = (): { key: keyof ScreeningRecord, name: string, order: number 
     const {formatMessage} = useIntl();
 
     return [
-        {key: "id", name: formatMessage({id: "globals.id_screenings"}), order: 0},
         {key: "startTime", name: "Start Time", order: 1},
     ]
 
@@ -47,42 +51,78 @@ const getRowValues = (entries: ScreeningRecord[] | null | undefined, orderMap: {
 
 export const ScreeningTable = () => {
     const isAdmin = useOwnUserHasRole(UserRoleEnum.Admin);
-    const [query, setQuery] = useState('');
+    const [query, setQuery]  = useState('');
 
     const {formatMessage} = useIntl();
+
     const header = useHeader();
     const {handleChangePage, handleChangePageSize, pagedData, isError, isLoading, tryReload, labelDisplay, update, remove} = useScreeningsTableController(query); // Use the controller hook.
     const [isOpenDeleteModal, setOpenDeleteModal] = useState(false);    
     const [screeningIdToDelete, setScreeningIdToDelete] = useState('');
+    const [number, setNumber] = useState(0);
+    
     const [editScreening, setEditScreening] = useState<ScreeningRecord | null>(null);
+    const [bookScreening, setBookScreening] = useState<ScreeningRecord | null>(null);
+    const {actions}=useBookingAddFormController2(bookScreening);
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     
 
     function handleEditScreening(screening: ScreeningRecord) {
             setEditScreening(screening);
            
-     }
+    }
 
+    function handleBookScreening(screening: ScreeningRecord) {
+        setBookScreening(screening);
+        const dataToRegister:  BookingAddFormModel= {screeningId: screening.id}
+        
+        actions.submit(dataToRegister);
+
+    }
+
+
+    function handleNextScreening(actions: BookingAddFormActions, screening: ScreeningRecord ) {
+
+        if (screening) {
+            const dataToRegister:  BookingAddFormModel= {screeningId: screening.id}
+            
+            actions.submit(dataToRegister);
+        }
+
+
+    }
     function handleDeleteUser(id: string) {
         setScreeningIdToDelete(id);
-        setOpenDeleteModal(true);
-    }
-
-    function handleConfirm() {
-        if (screeningIdToDelete) {
-        remove(screeningIdToDelete);
-        setOpenDeleteModal(false);
-        setScreeningIdToDelete('');
+            setOpenDeleteModal(true);
         }
-    }
 
-    function handleCancel() {
-        setOpenDeleteModal(false);
-        setScreeningIdToDelete('');
-    }
+        function handleConfirm() {
+            if (screeningIdToDelete) {
+            remove(screeningIdToDelete);
+            setOpenDeleteModal(false);
+            setScreeningIdToDelete('');
+            }
+        }
+
+        function handleCancel() {
+            setOpenDeleteModal(false);
+            setScreeningIdToDelete('');
+
+
+        }
+    
+
+   
+    
     
     return <DataLoadingContainer isError={isError} isLoading={isLoading} tryReload={tryReload}> {/* Wrap the table into the loading container because data will be fetched from the backend and is not immediately available.*/}
         <ScreeningAddDialog/> {/* Add the button to open the movie add modal. */}
-        {editScreening && (<ScreeningEditDialog screening={editScreening} onClose={() => setEditScreening(null)} />)} {/* Add the screening edit dialog and pass the edit screening to it if it is set. */}
+        {editScreening && (<ScreeningEditDialog screening={editScreening} onClose={() => setEditScreening(null)} justBooking={false} />)} {/* Add the screening edit dialog and pass the edit screening to it if it is set. */}
+        
+        
+        
         
         <TextField
 
@@ -155,13 +195,21 @@ export const ScreeningTable = () => {
                        key: "actions",
                        name: formatMessage({id: "labels.actions"}),
                        render: entry => <>
+                            
                             {!isOpenDeleteModal &&isAdmin && <IconButton color="primary" onClick={() => handleEditScreening(entry)}>
                                 <EditIcon color="primary" fontSize="small"/>
                             </IconButton>}
                            {!isOpenDeleteModal && isAdmin && <IconButton color="error" onClick={() => handleDeleteUser(entry.id || '')}>
                                <DeleteIcon color="error" fontSize="small"/>
-                           </IconButton>
-                           }</>,
+                           </IconButton>}
+                           {}
+
+                           {!isOpenDeleteModal  && !isAdmin && <IconButton color="success" onClick={() => handleBookScreening(entry)}>
+                               <CheckIcon color="success" fontSize="small"/>
+                           </IconButton>}
+                           
+                           
+                           </>,
                        order: 5
                    }]}
         />

@@ -13,6 +13,8 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { useFeedbackAddFormController } from "./FeedbackAddForm.controller";
 import { isEmpty, isUndefined } from "lodash";
 import { GenreEnum } from "@infrastructure/apis/client";
+import { useGetMovies } from "@infrastructure/apis/api-management/movie";
+import { usePaginationController } from "../../ui/Tables/Pagination.controller";
 
 /**
  * Here we declare the movie add form component.
@@ -21,7 +23,10 @@ import { GenreEnum } from "@infrastructure/apis/client";
 export const FeedbackAddForm = (props: { onSubmit?: () => void }) => {
     const { formatMessage } = useIntl();
     const { state, actions, computed } = useFeedbackAddFormController(props.onSubmit); // Use the controller.
-
+    
+    const { page, pageSize, setPagination } = usePaginationController(); // Get the pagination state.
+    const { data, isError, isLoading, queryKey } = useGetMovies(page, 1000, "");
+    const movies = data?.response?.data || [];
     return <form onSubmit={actions.handleSubmit(actions.submit)}> {/* Wrap your form into a form tag and use the handle submit callback to validate the form and call the data submission. */}
         <Stack spacing={4} style={{ width: "100%" }}>
             
@@ -155,27 +160,41 @@ export const FeedbackAddForm = (props: { onSubmit?: () => void }) => {
                     <FormControl
                         fullWidth
                         error={!isUndefined(state.errors.movieId)}
-                    > {/* Wrap the input into a form control and use the errors to show the input invalid if needed. */}
-                        <FormLabel required>
-                            <FormattedMessage id="globals.movieId" />
-                        </FormLabel> {/* Add a form label to indicate what the input means. */}
-                        <OutlinedInput
-                            {...actions.register("movieId")} // Bind the form variable to the UI input.
-                            placeholder={formatMessage(
-                                { id: "globals.placeholders.textInput" },
-                                {
-                                    fieldName: formatMessage({
-                                        id: "globals.movieId",
-                                    }),
-                                })}
-                            autoComplete="none"
-                        /> {/* Add a input like a textbox shown here. */}
-                        <FormHelperText
-                            hidden={isUndefined(state.errors.movieId)}
-                        >
-                            {state.errors.movieId?.message}
-                        </FormHelperText> {/* Add a helper text that is shown then the input has a invalid value. */}
-                    </FormControl>
+                    >
+                    <FormLabel required>
+                        <FormattedMessage id="globals.movieId" />
+                    </FormLabel>
+                    <Select
+                        {...actions.register("movieId")}
+                        value={actions.watch("movieId")}
+                        onChange={actions.selectMovie} 
+                        displayEmpty
+                    >
+                    <MenuItem value="" disabled>
+                        <span className="text-gray">
+                            {formatMessage({ id: "globals.placeholders.selectInput" }, {
+                                fieldName: formatMessage({ id: "globals.movies" }),
+                            })}
+                        </span>
+                    </MenuItem>
+
+                
+                    
+                        {movies.map(movie => (
+                            <MenuItem key={movie.id} value={movie.id}>
+                                {movie.title}
+                            </MenuItem>
+                        ))}
+                            
+                        
+
+                    </Select>
+                    <FormHelperText
+                        hidden={isUndefined(state.errors.movieId)}
+                    >
+                        {state.errors.movieId?.message}
+                    </FormHelperText>
+                </FormControl>
                 </div>
                 
                 <div className="flex -col-end- gap-32 col-span-2  ">

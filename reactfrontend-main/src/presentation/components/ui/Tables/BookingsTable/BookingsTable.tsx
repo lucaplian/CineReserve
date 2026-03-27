@@ -78,7 +78,6 @@ export const BookingsTable = () => {
         setBookingIdToDelete('');
     }
     return <DataLoadingContainer isError={isError} isLoading={isLoading} tryReload={tryReload}> {/* Wrap the table into the loading container because data will be fetched from the backend and is not immediately available.*/}
-        <BookingAddDialog/> {/* Add the button to open the movie add modal. */}
         {editBooking && (<BookingEditDialog booking={editBooking} onClose={() => setEditBooking(null)} />)} {/* Add the movie add dialog and pass the edit movie to it if it is set. */}
         
         <TextField
@@ -139,10 +138,8 @@ export const BookingsTable = () => {
                        key: "actions",
                        name: formatMessage({id: "labels.actions"}),
                        render: entry => <>
-                            {(isAdmin || isOwnUser?.id==entry.user?.id) && <IconButton color="primary" onClick={() => handleEditBooking(entry)}>
-                                <EditIcon color="primary" fontSize="small"/>
-                            </IconButton>}
-                           {(isAdmin || isOwnUser?.id==entry.user?.id)  && <IconButton color="error" onClick={() => handleDeleteUser(entry.id || '')}>
+                            
+                           {!isOpenDeleteModal && (isAdmin || isOwnUser?.id==entry.user?.id)  && <IconButton color="error" onClick={() => handleDeleteUser(entry.id || '')}>
                                <DeleteIcon color="error" fontSize="small"/>
                            </IconButton>
                            }</>,

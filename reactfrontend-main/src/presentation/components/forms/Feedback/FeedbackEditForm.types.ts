@@ -28,6 +28,7 @@ export type FeedbackEditFormActions = {
     submit: (body: FeedbackEditFormModel) => void;
     selectRating: (value: SelectChangeEvent<number>) => void;
     cancelOption: () => void;
+    selectMovie: (value: SelectChangeEvent<string>) => void;
 };
 export type FeedbackEditFormComputed = {
     defaultValues: FeedbackEditFormModel,

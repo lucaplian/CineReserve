@@ -13,6 +13,8 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { useBookingAddFormController } from "./BookingAddForm.controller";
 import { isEmpty, isUndefined } from "lodash";
 import { GenreEnum } from "@infrastructure/apis/client";
+import { usePaginationController } from "../../ui/Tables/Pagination.controller";
+import { useGetMovies } from "@infrastructure/apis/api-management/movie";
 
 /**
  * Here we declare the movie add form component.
@@ -21,6 +23,7 @@ import { GenreEnum } from "@infrastructure/apis/client";
 export const BookingAddForm = (props: { onSubmit?: () => void }) => {
     const { formatMessage } = useIntl();
     const { state, actions, computed } = useBookingAddFormController(props.onSubmit); // Use the controller.
+    
 
     return <form onSubmit={actions.handleSubmit(actions.submit)}> {/* Wrap your form into a form tag and use the handle submit callback to validate the form and call the data submission. */}
         <Stack spacing={4} style={{ width: "100%" }}>

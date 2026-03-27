@@ -46,9 +46,32 @@ export const UserTable = () => {
     const header = useHeader();
     const [query, setQuery] = useState('');
     const {handleChangePage, handleChangePageSize, pagedData, isError, isLoading, tryReload, labelDisplay, remove} = useUserTableController(query); // Use the controller hook.
+    const [isOpenDeleteModal, setOpenDeleteModal] = useState(false);    
+    const [userIdToDelete, setUserIdToDelete] = useState('');
     
+    function handleDeleteUser(userId: string) {
+        setUserIdToDelete(userId);
+        setOpenDeleteModal(true);
+    }
+
+    function handleConfirm() {
+        if (userIdToDelete) {
+        remove(userIdToDelete);
+        setOpenDeleteModal(false);
+        setUserIdToDelete('');
+        }
+    }
+
+    function handleCancel() {
+        setOpenDeleteModal(false);
+        setUserIdToDelete('');
+
+
+    }
     return <DataLoadingContainer isError={isError} isLoading={isLoading} tryReload={tryReload}> {/* Wrap the table into the loading container because data will be fetched from the backend and is not immediately available.*/}
         <UserAddDialog/> {/* Add the button to open the user add modal. */}
+
+
         <TextField
             label={formatMessage({id: "globals.searchUsers"})}
             value={query}
@@ -69,6 +92,19 @@ export const UserTable = () => {
                 showFirstButton
                 showLastButton
             />}
+
+        {isOpenDeleteModal && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h1 style={{ color: 'white' }}>{formatMessage({id: "globals.areYouSure"})}</h1>
+            <p style={{ color: 'white' }}>{formatMessage({id: "globals.confirmDeleteMovie"})}</p>
+            <div className="modal-buttons">
+              <button style={{ backgroundColor: 'white', color: 'black' }} onClick={handleConfirm}>{formatMessage({id: "labels.yes"})}</button>
+              <button style={{ backgroundColor: 'white', color: 'black' }} onClick={handleCancel}>{formatMessage({id: "labels.no"})}</button>
+            </div>
+          </div>
+        </div>
+      )}
 
         <DataTable data={pagedData?.data ?? []}
                    header={header}
@@ -100,7 +136,7 @@ export const UserTable = () => {
                        key: "actions",
                        name: formatMessage({id: "labels.actions"}),
                        render: entry => <>
-                           {entry.id !== ownUserId && <IconButton color="error" onClick={() => remove(entry.id || '')}>
+                           {!isOpenDeleteModal && entry.id !== ownUserId && <IconButton color="error" onClick={() => handleDeleteUser(entry.id || '')}>
                                <DeleteIcon color="error" fontSize="small"/>
                            </IconButton>
                            }</>,

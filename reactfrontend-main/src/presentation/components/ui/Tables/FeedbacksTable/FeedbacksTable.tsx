@@ -136,7 +136,8 @@ export const FeedbacksTable = () => {
                     {
                         key: "movies",
                         name: formatMessage({id: "globals.movies"}),
-                        render: (entry: FeedbackRecord) => <>{entry.movie?.title}</>,
+                        render: (entry: FeedbackRecord) => <>{entry.movie?.title    
+                        }</>,
                         order: 1
                     },
                     {key: "wouldRecommend", name: formatMessage({id: "globals.wouldRecommend"}), render: (entry) => { 

@@ -19,7 +19,7 @@ import { ScreeningRecord } from "@infrastructure/apis/client/models/ScreeningRec
  * Use a function to return the default values of the form and the validation schema.
  * You can add other values as the default, for example when populating the form with data to update an entity in the backend.
  */
-const getDefaultValues = (screening: ScreeningRecord | null, initialData?: ScreeningAddFormModel) => {
+const getDefaultValues = (screening: ScreeningRecord | null, initialData?: ScreeningEditFormModel) => {
     const defaultValues = {
         id: screening?.id || "",
         startTime: screening?.startTime ? new Date(screening.startTime) : new Date(),
@@ -112,6 +112,17 @@ export const useScreeningEditFormController = (screening: ScreeningRecord | null
                 shouldValidate: true,
             });
         }, [setValue]);
+    const selectMovie = useCallback((event: SelectChangeEvent<string>) => { // Select inputs are tricky and may need their on callbacks to set the values.
+        setValue("movieId", event.target.value as string, {
+            shouldValidate: true,
+        });
+    }, [setValue]);
+
+    const selectHall = useCallback((event: SelectChangeEvent<string>) => { // Select inputs are tricky and may need their on callbacks to set the values.
+        setValue("hallId", event.target.value as string, {
+            shouldValidate: true,
+        });
+    }, [setValue]);
 
     return {
         actions: { // Return any callbacks needed to interact with the form.
@@ -120,7 +131,9 @@ export const useScreeningEditFormController = (screening: ScreeningRecord | null
             register, // Add the variable register to bind the form fields in the UI with the form variables.
             radioScreenType,
             watch, // Add a watch on the variables, this function can be used to watch changes on variables if it is needed in some locations.
-            cancelOption
+            cancelOption,
+            selectMovie,
+            selectHall
         },
         computed: {
             defaultValues,

@@ -29,6 +29,8 @@ export type ScreeningEditFormActions = {
     submit: (body: ScreeningEditFormModel) => void;
     radioScreenType: (event: React.ChangeEvent<HTMLInputElement>) => void;
     cancelOption: () => void;
+    selectMovie: (value: SelectChangeEvent<string>) => void;
+    selectHall: (value: SelectChangeEvent<string>) => void;
 };
 export type ScreeningEditFormComputed = {
     defaultValues: ScreeningEditFormModel,

@@ -104,7 +104,7 @@ export const LoginForm = () => {
                     </div>
                     <div className="flex -col-end-2 gap-48 col-span-2 ">
 
-                    <Button  style={{ justifyContent: "right" }}  type="submit"disabled={!isEmpty(state.errors) || computed.isSubmitting}> {/* Add a button with type submit to call the submission callback if the button is a descended of the form element. */}
+                    <Button  style={{ justifyContent: "right" }}  type="submit" disabled={!isEmpty(state.errors) || computed.isSubmitting}> {/* Add a button with type submit to call the submission callback if the button is a descended of the form element. */}
                         {!computed.isSubmitting && <FormattedMessage id="globals.submit" />}
                         {computed.isSubmitting && <CircularProgress />}
                     </Button>

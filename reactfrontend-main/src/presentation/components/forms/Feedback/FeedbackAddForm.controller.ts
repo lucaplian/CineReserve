@@ -81,6 +81,8 @@ export const useFeedbackAddFormController = (onSubmit?: () => void): FeedbackAdd
                 }
             }, [queryClient]);
 
+       
+
     const {
         register,
         handleSubmit,
@@ -98,6 +100,13 @@ export const useFeedbackAddFormController = (onSubmit?: () => void): FeedbackAdd
         });
     }, [setValue]);
 
+
+    const selectMovie = useCallback((event: SelectChangeEvent<string>) => { // Select inputs are tricky and may need their on callbacks to set the values.
+        setValue("movieId", event.target.value as string, {
+            shouldValidate: true,
+        });
+    }, [setValue]); 
+
     return {
         actions: { // Return any callbacks needed to interact with the form.
             handleSubmit, // Add the form submit handle.
@@ -105,7 +114,8 @@ export const useFeedbackAddFormController = (onSubmit?: () => void): FeedbackAdd
             register, // Add the variable register to bind the form fields in the UI with the form variables.
             watch, // Add a watch on the variables, this function can be used to watch changes on variables if it is needed in some locations.
             selectRating,
-            cancelOption
+            cancelOption,
+            selectMovie
         },
         computed: {
             defaultValues,

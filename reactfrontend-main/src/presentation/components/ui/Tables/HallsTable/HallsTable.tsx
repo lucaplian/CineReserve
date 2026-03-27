@@ -22,7 +22,6 @@ const useHeader = (): { key: keyof HallRecord, name: string, order: number }[] =
     const {formatMessage} = useIntl();
 
     return [
-        {key: "id", name: formatMessage({id: "globals.id_halls"}), order: 0},
         {key: "name", name: formatMessage({id: "globals.name"}), order: 1},
         {key: "capacity", name: formatMessage({id: "globals.capacity"}), order: 2},
     ]

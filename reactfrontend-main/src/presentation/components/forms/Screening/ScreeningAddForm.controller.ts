@@ -107,6 +107,19 @@ export const useScreeningAddFormController = (onSubmit?: () => void): ScreeningA
                 shouldValidate: true,
             });
         }, [setValue]);
+    
+    
+    const selectMovie = useCallback((event: SelectChangeEvent<string>) => { // Select inputs are tricky and may need their on callbacks to set the values.
+        setValue("movieId", event.target.value as string, {
+            shouldValidate: true,
+        });
+    }, [setValue]);
+
+    const selectHall = useCallback((event: SelectChangeEvent<string>) => { // Select inputs are tricky and may need their on callbacks to set the values.
+        setValue("hallId", event.target.value as string, {
+            shouldValidate: true,
+        });
+    }, [setValue]);
 
     return {
         actions: { // Return any callbacks needed to interact with the form.
@@ -115,7 +128,9 @@ export const useScreeningAddFormController = (onSubmit?: () => void): ScreeningA
             register, // Add the variable register to bind the form fields in the UI with the form variables.
             radioScreenType,
             watch, // Add a watch on the variables, this function can be used to watch changes on variables if it is needed in some locations.
-            cancelOption
+            cancelOption,
+            selectMovie,
+            selectHall
         },
         computed: {
             defaultValues,
