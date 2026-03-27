@@ -162,7 +162,7 @@ export const FeedbackAddForm = (props: { onSubmit?: () => void }) => {
                         error={!isUndefined(state.errors.movieId)}
                     >
                     <FormLabel required>
-                        <FormattedMessage id="globals.movieId" />
+                        <FormattedMessage id="globals.movies" />
                     </FormLabel>
                     <Select
                         {...actions.register("movieId")}

@@ -65,7 +65,7 @@ export const ScreeningEditForm = (props: { screening: ScreeningRecord | null, on
                         error={!isUndefined(state.errors.movieId)}
                     >
                     <FormLabel required>
-                        <FormattedMessage id="globals.movieId" />
+                        <FormattedMessage id="globals.movies" />
                     </FormLabel>
                     <Select
                         {...actions.register("movieId")}

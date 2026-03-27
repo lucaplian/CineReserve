@@ -161,7 +161,7 @@ export const FeedbackEditForm = (props: {feedback: FeedbackRecord | null, onSubm
                         error={!isUndefined(state.errors.movieId)}
                     >
                     <FormLabel required>
-                        <FormattedMessage id="globals.movieId" />
+                        <FormattedMessage id="globals.movies" />
                     </FormLabel>
                     <Select
                         {...actions.register("movieId")}
