@@ -1,0 +1,36 @@
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Infrastructure/bin/Debug/net8.0/MobyLabWebProgramming.Infrastructure.deps.json
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Infrastructure/bin/Debug/net8.0/MobyLabWebProgramming.Infrastructure.dll
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Infrastructure/bin/Debug/net8.0/MobyLabWebProgramming.Infrastructure.pdb
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.csproj.AssemblyReference.cache
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.AssemblyInfoInputs.cache
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.AssemblyInfo.cs
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.csproj.CoreCompileInputs.cache
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.dll
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/refint/MobyLabWebProgramming.Infrastructure.dll
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.pdb
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/ref/MobyLabWebProgramming.Infrastructure.dll
+/Users/madalinamarcu/Downloads/IDP PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/bin/Debug/net8.0/MobyLabWebProgramming.Infrastructure.deps.json
+/Users/madalinamarcu/Downloads/IDP PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/bin/Debug/net8.0/MobyLabWebProgramming.Infrastructure.dll
+/Users/madalinamarcu/Downloads/IDP PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/bin/Debug/net8.0/MobyLabWebProgramming.Infrastructure.pdb
+/Users/madalinamarcu/Downloads/IDP PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.csproj.AssemblyReference.cache
+/Users/madalinamarcu/Downloads/IDP PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/madalinamarcu/Downloads/IDP PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.AssemblyInfoInputs.cache
+/Users/madalinamarcu/Downloads/IDP PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.AssemblyInfo.cs
+/Users/madalinamarcu/Downloads/IDP PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.csproj.CoreCompileInputs.cache
+/Users/madalinamarcu/Downloads/IDP PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.dll
+/Users/madalinamarcu/Downloads/IDP PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/refint/MobyLabWebProgramming.Infrastructure.dll
+/Users/madalinamarcu/Downloads/IDP PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.pdb
+/Users/madalinamarcu/Downloads/IDP PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/ref/MobyLabWebProgramming.Infrastructure.dll
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/bin/Debug/net8.0/MobyLabWebProgramming.Infrastructure.deps.json
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/bin/Debug/net8.0/MobyLabWebProgramming.Infrastructure.dll
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/bin/Debug/net8.0/MobyLabWebProgramming.Infrastructure.pdb
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.csproj.AssemblyReference.cache
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.AssemblyInfoInputs.cache
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.AssemblyInfo.cs
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.csproj.CoreCompileInputs.cache
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.dll
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/refint/MobyLabWebProgramming.Infrastructure.dll
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/MobyLabWebProgramming.Infrastructure.pdb
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Booking-Service/MobyLabWebProgramming.Infrastructure/obj/Debug/net8.0/ref/MobyLabWebProgramming.Infrastructure.dll

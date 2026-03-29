@@ -1,0 +1,38 @@
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Database/bin/Debug/net8.0/MobyLabWebProgramming.Database.deps.json
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Database/bin/Debug/net8.0/MobyLabWebProgramming.Database.dll
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Database/bin/Debug/net8.0/MobyLabWebProgramming.Database.pdb
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Database/bin/Debug/net8.0/MobyLabWebProgramming.Infrastructure.dll
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Database/bin/Debug/net8.0/MobyLabWebProgramming.Infrastructure.pdb
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.csproj.AssemblyReference.cache
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.GeneratedMSBuildEditorConfig.editorconfig
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.AssemblyInfoInputs.cache
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.AssemblyInfo.cs
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.csproj.CoreCompileInputs.cache
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabW.A5F2800C.Up2Date
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.dll
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Database/obj/Debug/net8.0/refint/MobyLabWebProgramming.Database.dll
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.pdb
+/Users/madalinamarcu/Downloads/dotnetbackend-main/MobyLabWebProgramming.Database/obj/Debug/net8.0/ref/MobyLabWebProgramming.Database.dll
+/Users/madalinamarcu/Downloads/IDP PROIECT/Auth-Service/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.csproj.AssemblyReference.cache
+/Users/madalinamarcu/Downloads/IDP PROIECT/Auth-Service/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.GeneratedMSBuildEditorConfig.editorconfig
+/Users/madalinamarcu/Downloads/IDP PROIECT/Auth-Service/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.AssemblyInfoInputs.cache
+/Users/madalinamarcu/Downloads/IDP PROIECT/Auth-Service/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.AssemblyInfo.cs
+/Users/madalinamarcu/Downloads/IDP PROIECT/Auth-Service/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.csproj.CoreCompileInputs.cache
+/Users/madalinamarcu/Downloads/IDP PROIECT/Auth-Service/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.dll
+/Users/madalinamarcu/Downloads/IDP PROIECT/Auth-Service/MobyLabWebProgramming.Database/obj/Debug/net8.0/refint/MobyLabWebProgramming.Database.dll
+/Users/madalinamarcu/Downloads/IDP PROIECT/Auth-Service/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.pdb
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Auth-Service/MobyLabWebProgramming.Database/bin/Debug/net8.0/MobyLabWebProgramming.Database.deps.json
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Auth-Service/MobyLabWebProgramming.Database/bin/Debug/net8.0/MobyLabWebProgramming.Database.dll
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Auth-Service/MobyLabWebProgramming.Database/bin/Debug/net8.0/MobyLabWebProgramming.Database.pdb
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Auth-Service/MobyLabWebProgramming.Database/bin/Debug/net8.0/MobyLabWebProgramming.Infrastructure.dll
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Auth-Service/MobyLabWebProgramming.Database/bin/Debug/net8.0/MobyLabWebProgramming.Infrastructure.pdb
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Auth-Service/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.csproj.AssemblyReference.cache
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Auth-Service/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.GeneratedMSBuildEditorConfig.editorconfig
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Auth-Service/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.AssemblyInfoInputs.cache
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Auth-Service/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.AssemblyInfo.cs
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Auth-Service/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.csproj.CoreCompileInputs.cache
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Auth-Service/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabW.A5F2800C.Up2Date
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Auth-Service/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.dll
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Auth-Service/MobyLabWebProgramming.Database/obj/Debug/net8.0/refint/MobyLabWebProgramming.Database.dll
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Auth-Service/MobyLabWebProgramming.Database/obj/Debug/net8.0/MobyLabWebProgramming.Database.pdb
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Auth-Service/MobyLabWebProgramming.Database/obj/Debug/net8.0/ref/MobyLabWebProgramming.Database.dll
