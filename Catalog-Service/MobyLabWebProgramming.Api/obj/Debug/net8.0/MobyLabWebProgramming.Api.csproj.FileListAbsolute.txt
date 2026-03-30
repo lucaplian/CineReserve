@@ -292,3 +292,5 @@
 /Users/madalinamarcu/Downloads/IDP_PROIECT/Catalog-Service/MobyLabWebProgramming.Api/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.MobyLabWebProgramming.Api.props
 /Users/madalinamarcu/Downloads/IDP_PROIECT/Catalog-Service/MobyLabWebProgramming.Api/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.MobyLabWebProgramming.Api.props
 /Users/madalinamarcu/Downloads/IDP_PROIECT/Catalog-Service/MobyLabWebProgramming.Api/obj/Debug/net8.0/staticwebassets.pack.json
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Catalog-Service/MobyLabWebProgramming.Api/bin/Debug/net8.0/Prometheus.NetStandard.dll
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Catalog-Service/MobyLabWebProgramming.Api/bin/Debug/net8.0/Prometheus.AspNetCore.dll

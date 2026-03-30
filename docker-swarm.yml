@@ -1,0 +1,135 @@
+version: "3.8"
+
+services:
+  prometheus:
+        image: prom/prometheus
+        volumes:
+            - ./prometheus.yml:/etc/prometheus/prometheus.yml
+        ports:
+            - 9090:9090
+        networks:
+            - cinereserve-monitoring-network
+            - cinereserve-auth-network
+            - cinereserve-catalog-network
+            - cinereserve-booking-network
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - cinereserve-monitoring-network
+
+
+  cinereserve-auth-db:
+    image: postgres:13.2-alpine
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: cinereserve-auth
+      POSTGRES_DB: cinereserve-auth
+      POSTGRES_PASSWORD: cinereserve-auth
+    volumes:
+      - cinereserve-auth-db-vol:/var/lib/postgresql/data
+    networks:
+      - cinereserve-auth-network
+  cinereserve-booking-db:
+    image: postgres:13.2-alpine
+    ports:
+      - 5435:5432
+    environment:
+      POSTGRES_USER: cinereserve-booking
+      POSTGRES_DB: cinereserve-booking
+      POSTGRES_PASSWORD: cinereserve-booking
+    volumes:
+      - cinereserve-booking-db-vol:/var/lib/postgresql/data
+    networks:
+      - cinereserve-booking-network
+  cinereserve-catalog-db:
+    image: postgres:13.2-alpine
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_USER: cinereserve-catalog
+      POSTGRES_DB: cinereserve-catalog
+      POSTGRES_PASSWORD: cinereserve-catalog
+    volumes:
+      - cinereserve-catalog-db-vol:/var/lib/postgresql/data
+    networks:
+      - cinereserve-catalog-network
+  cinereserve-auth-service:
+    image: lucaplian6650/cinereserve-auth:latest
+    ports:
+      - 5001:8080
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure 
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__WebAppDatabase=Host=cinereserve-auth-db;Port=5432;Database=cinereserve-auth;Username=cinereserve-auth;Password=cinereserve-auth
+    depends_on:
+      - cinereserve-auth-db
+    networks:
+      - cinereserve-auth-network
+      - cinereserve-gateway-network
+  cinereserve-catalog-service:
+    image: lucaplian6650/cinereserve-catalog:latest
+    ports:
+      - 5002:8080
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__WebAppDatabase=Host=cinereserve-catalog-db;Port=5432;Database=cinereserve-catalog;Username=cinereserve-catalog;Password=cinereserve-catalog
+    depends_on:
+      - cinereserve-catalog-db
+    networks:
+      - cinereserve-catalog-network
+      - cinereserve-gateway-network
+      - cinereserve-auth-network
+  cinereserve-booking-service:
+    image: lucaplian6650/cinereserve-booking:latest
+    ports:
+      - 5003:8080
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__WebAppDatabase=Host=cinereserve-booking-db;Port=5432;Database=cinereserve-booking;Username=cinereserve-booking;Password=cinereserve-booking
+    depends_on:
+      - cinereserve-booking-db
+    networks:
+      - cinereserve-booking-network
+      - cinereserve-gateway-network
+      - cinereserve-auth-network
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@default.com
+      - PGADMIN_DEFAULT_PASSWORD=default
+    ports:
+           - 5050:80
+    networks:
+            - cinereserve-booking-network
+            - cinereserve-auth-network
+            - cinereserve-catalog-network
+
+volumes:
+  cinereserve-auth-db-vol:
+  cinereserve-catalog-db-vol:
+  cinereserve-booking-db-vol:
+
+networks:
+  cinereserve-booking-network:
+  cinereserve-auth-network:
+  cinereserve-catalog-network:
+  cinereserve-gateway-network:
+  cinereserve-monitoring-network:

@@ -303,3 +303,5 @@
 /Users/madalinamarcu/Downloads/IDP_PROIECT/Booking-Service/MobyLabWebProgramming.Api/obj/Debug/net8.0/MobyLabWebProgramming.Api.pdb
 /Users/madalinamarcu/Downloads/IDP_PROIECT/Booking-Service/MobyLabWebProgramming.Api/obj/Debug/net8.0/MobyLabWebProgramming.Api.genruntimeconfig.cache
 /Users/madalinamarcu/Downloads/IDP_PROIECT/Booking-Service/MobyLabWebProgramming.Api/obj/Debug/net8.0/ref/MobyLabWebProgramming.Api.dll
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Booking-Service/MobyLabWebProgramming.Api/bin/Debug/net8.0/Prometheus.NetStandard.dll
+/Users/madalinamarcu/Downloads/IDP_PROIECT/Booking-Service/MobyLabWebProgramming.Api/bin/Debug/net8.0/Prometheus.AspNetCore.dll

@@ -57,6 +57,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.24, )"
+            },
+            "prometheus-net.AspNetCore": {
+              "target": "Package",
+              "version": "[8.2.1, )"
             }
           },
           "imports": [

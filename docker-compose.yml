@@ -1,6 +1,29 @@
 version: "3.8"
 
 services:
+  prometheus:
+        image: prom/prometheus
+        volumes:
+            - ./prometheus.yml:/etc/prometheus/prometheus.yml
+        ports:
+            - 9090:9090
+        networks:
+            - cinereserve-monitoring-network
+            - cinereserve-auth-network
+            - cinereserve-catalog-network
+            - cinereserve-booking-network
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - cinereserve-monitoring-network
+
+
   cinereserve-auth-db:
     image: postgres:13.2-alpine
     ports:
@@ -97,3 +120,4 @@ networks:
   cinereserve-auth-network:
   cinereserve-catalog-network:
   cinereserve-gateway-network:
+  cinereserve-monitoring-network:

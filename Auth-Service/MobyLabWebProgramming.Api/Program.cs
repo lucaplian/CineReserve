@@ -1,6 +1,7 @@
 using MobyLabWebProgramming.Database.Repository;
 using MobyLabWebProgramming.Infrastructure.Extensions;
 using MobyLabWebProgramming.Services.Extensions;
+using Prometheus;
 
 namespace MobyLabWebProgramming.Api;
 
@@ -19,13 +20,15 @@ public static class Program
             .UseLogger()
             .AddWorkers()
             .AddApi();
+        builder.Services.UseHttpClientMetrics();       
 
         var app = builder
             .Build()
             .ConfigureApplication(ApplicationName)
             .MigrateDatabase<WebAppDatabaseContext>();
-        
-        
+        app.UseMetricServer();
+        app.UseHttpMetrics();
+         
         
         app.Run();
     }

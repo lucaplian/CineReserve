@@ -2,7 +2,7 @@ using MobyLabWebProgramming.Database.Repository;
 using MobyLabWebProgramming.Infrastructure.Extensions;
 using MobyLabWebProgramming.Services.Client;
 using MobyLabWebProgramming.Services.Extensions;
-
+using Prometheus;
 namespace MobyLabWebProgramming.Api;
 
 public static class Program
@@ -25,13 +25,14 @@ public static class Program
         {
             client.BaseAddress = new Uri("http://cinereserve-auth-service:8080");
         });
-
+        builder.Services.UseHttpClientMetrics();
         var app = builder
             .Build()
             .ConfigureApplication(ApplicationName)
             .MigrateDatabase<WebAppDatabaseContext>();
         
-        
+        app.UseMetricServer();
+        app.UseHttpMetrics();
         
         app.Run();
     }
