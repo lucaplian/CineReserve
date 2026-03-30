@@ -1,0 +1,31 @@
+name: CI/CD CineReserve
+
+on:
+  push:
+    branches: [ "IDP" ]
+  
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Login to DockerHub
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+    - name: Build and push Auth-Service
+      run: |
+        docker build -t lucaplian6650/cinereserve-auth:latest ./Auth-Service
+        docker push lucaplian6650/cinereserve-auth:latest
+    - name: Build and push Catalog-Service
+      run: |
+        docker build -t lucaplian6650/cinereserve-catalog:latest ./Catalog-Service
+        docker push lucaplian6650/cinereserve-catalog:latest
+    - name: Build and push Booking-Service
+      run: |
+        docker build -t lucaplian6650/cinereserve-booking:latest ./Booking-Service
+        docker push lucaplian6650/cinereserve-booking:latest
+        
+      
