@@ -3,6 +3,7 @@ name: CI/CD CineReserve
 on:
   push:
     branches: [ "IDP" ]
+  workflow_dispatch:
   
 
 jobs:
