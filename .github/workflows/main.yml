@@ -28,5 +28,9 @@ jobs:
       run: |
         docker build -t lucaplian6650/cinereserve-booking:latest ./Booking-Service
         docker push lucaplian6650/cinereserve-booking:latest
+    - name: Build and push FrontEnd-Service
+      run: |
+        docker build -t lucaplian6650/cinereserve-frontend:latest ./FrontEnd-Service
+        docker push lucaplian6650/cinereserve-frontend:latest
         
       
