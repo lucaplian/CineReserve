@@ -110,6 +110,20 @@ services:
       - cinereserve-booking-network
       - cinereserve-gateway-network
       - cinereserve-auth-network
+  cinereserve-frontend-service:
+    image: lucaplian6650/cinereserve-frontend:latest
+    ports:
+      - 80:80
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - cinereserve-gateway-network
+    depends_on:
+      - cinereserve-auth-service
+      - cinereserve-catalog-service
+      - cinereserve-booking-service
   pgadmin:
     image: dpage/pgadmin4
     environment:

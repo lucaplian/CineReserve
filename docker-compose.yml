@@ -6,7 +6,7 @@ services:
         volumes:
             - ./prometheus.yml:/etc/prometheus/prometheus.yml
         ports:
-            - 9090:9090
+            - 9091:9090
         networks:
             - cinereserve-monitoring-network
             - cinereserve-auth-network
@@ -27,7 +27,7 @@ services:
   cinereserve-auth-db:
     image: postgres:13.2-alpine
     ports:
-      - 5433:5432
+      - 5438:5432
     environment:
       POSTGRES_USER: cinereserve-auth
       POSTGRES_DB: cinereserve-auth
@@ -39,7 +39,7 @@ services:
   cinereserve-booking-db:
     image: postgres:13.2-alpine
     ports:
-      - 5435:5432
+      - 5437:5432
     environment:
       POSTGRES_USER: cinereserve-booking
       POSTGRES_DB: cinereserve-booking
@@ -51,7 +51,7 @@ services:
   cinereserve-catalog-db:
     image: postgres:13.2-alpine
     ports:
-      - 5434:5432
+      - 5436:5432
     environment:
       POSTGRES_USER: cinereserve-catalog
       POSTGRES_DB: cinereserve-catalog
@@ -98,17 +98,27 @@ services:
       - cinereserve-booking-network
       - cinereserve-gateway-network
       - cinereserve-auth-network
+  cinereserve-frontend-service:
+    build: ./FrontEnd-Service
+    ports:
+      - 3004:80
+    networks:
+      - cinereserve-gateway-network
+    depends_on:
+      - cinereserve-auth-service
+      - cinereserve-catalog-service
+      - cinereserve-booking-service
   pgadmin:
     image: dpage/pgadmin4
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@default.com
       - PGADMIN_DEFAULT_PASSWORD=default
     ports:
-           - 5050:80
+           - 5051:80
     networks:
-            - cinereserve-booking-network
-            - cinereserve-auth-network
-            - cinereserve-catalog-network
+      - cinereserve-booking-network
+      - cinereserve-auth-network
+      - cinereserve-catalog-network
 
 volumes:
   cinereserve-auth-db-vol:
