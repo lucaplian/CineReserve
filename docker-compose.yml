@@ -1,6 +1,54 @@
 version: "3.8"
 
 services:
+  kong-db:
+    image: postgres:13.2-alpine
+    container_name: kong-db
+    environment:
+      POSTGRES_USER: kong
+      POSTGRES_DB: kong
+      POSTGRES_PASSWORD: kong
+    volumes:
+      - kong-db-vol:/var/lib/postgresql/data
+    networks:
+      - cinereserve-gateway-network
+
+  kong-migrations:
+    image: kong:latest
+    command: >
+      sh -c "kong migrations bootstrap && kong migrations up"
+    depends_on:
+      - kong-db
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-db
+      KONG_PG_USER: kong
+      KONG_PG_PASSWORD: kong
+    networks:
+      - cinereserve-gateway-network
+
+  kong:
+    image: kong:latest
+    container_name: kong
+    restart: unless-stopped
+    depends_on:
+      - kong-db
+      - kong-migrations
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-db
+      KONG_PG_USER: kong
+      KONG_PG_PASSWORD: kong
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+    networks:
+      - cinereserve-gateway-network
   prometheus:
         image: prom/prometheus
         volumes:
@@ -124,6 +172,7 @@ volumes:
   cinereserve-auth-db-vol:
   cinereserve-catalog-db-vol:
   cinereserve-booking-db-vol:
+  kong-db-vol:
 
 networks:
   cinereserve-booking-network:
