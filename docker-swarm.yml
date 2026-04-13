@@ -23,6 +23,7 @@ services:
     networks:
       - cinereserve-monitoring-network
 
+# TEST
 
   cinereserve-auth-db:
     image: postgres:13.2-alpine
