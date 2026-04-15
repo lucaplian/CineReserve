@@ -3,13 +3,13 @@
  */
 export enum AppRoute {
     Index = "/",
-    Login = "/login",
-    Users = "/users",
-    Movie = "/movies",
-    Halls = "/halls",
-    Screenings = "/screenings",
-    Bookings = "/bookings",
-    Feedback = "/feedback",
-    Register = "/register",
-    UserFiles = "/user-files"
+    Login = "/auth/login",
+    Users = "/auth/users",
+    Movie = "/catalog/movies",
+    Halls = "/catalog/halls",
+    Screenings = "/catalog/screenings",
+    Bookings = "/booking/bookings",
+    Feedback = "/booking/feedback",
+    Register = "/auth/register",
+    UserFiles = "/auth/user-files"
 }

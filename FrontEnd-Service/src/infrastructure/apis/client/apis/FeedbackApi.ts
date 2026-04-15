@@ -79,7 +79,7 @@ export class FeedbackApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Feedback/Add`,
+            path: `/api/booking/Feedback/Add`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -119,7 +119,7 @@ export class FeedbackApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Feedback/Delete/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            path: `/api/booking/Feedback/Delete/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -158,7 +158,7 @@ export class FeedbackApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Feedback/GetById/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            path: `/api/booking/Feedback/GetById/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -202,7 +202,7 @@ export class FeedbackApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Feedback/GetPage`,
+            path: `/api/booking/Feedback/GetPage`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -236,7 +236,7 @@ export class FeedbackApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Feedback/Update`,
+            path: `/api/booking/Feedback/Update`,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,

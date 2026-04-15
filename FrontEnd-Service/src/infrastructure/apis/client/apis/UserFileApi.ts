@@ -15,7 +15,7 @@
 
 import * as runtime from '../runtime';
 import type {
-  RequestResponse,
+    RequestResponse,
 } from '../models/index';
 import type {
     UserFileRecordPagedResponseRequestResponse
@@ -23,11 +23,13 @@ import type {
 import {
     RequestResponseFromJSON,
     RequestResponseToJSON,
-    
+
 } from '../models/index';
-import {   UserFileRecordPagedResponseRequestResponseFromJSON,
-    UserFileRecordPagedResponseRequestResponseToJSON}
-from "@infrastructure/apis/client/models/UserFileRecordPagedResponseRequestResponse";
+import {
+    UserFileRecordPagedResponseRequestResponseFromJSON,
+    UserFileRecordPagedResponseRequestResponseToJSON
+}
+    from "@infrastructure/apis/client/models/UserFileRecordPagedResponseRequestResponse";
 
 export interface ApiUserFileAddPostRequest {
     file?: Blob;
@@ -89,7 +91,7 @@ export class UserFileApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/UserFile/Add`,
+            path: `/api/auth/UserFile/Add`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -129,7 +131,7 @@ export class UserFileApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/UserFile/Download/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            path: `/api/auth/UserFile/Download/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -173,7 +175,7 @@ export class UserFileApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/UserFile/GetPage`,
+            path: `/api/auth/UserFile/GetPage`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

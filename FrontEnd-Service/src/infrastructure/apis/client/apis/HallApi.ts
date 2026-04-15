@@ -16,7 +16,7 @@
 import * as runtime from '../runtime';
 import type {
 
-  RequestResponse,
+    RequestResponse,
 } from '../models/index';
 
 import type {
@@ -37,18 +37,26 @@ import {
     RequestResponseToJSON,
 } from '../models/index';
 
-import {   HallAddRecordFromJSON,
-    HallAddRecordToJSON}
-from "@infrastructure/apis/client/models/HallAddRecord";
-import {   HallRecordPagedResponseRequestResponseFromJSON,
-    HallRecordPagedResponseRequestResponseToJSON}
-from "@infrastructure/apis/client/models/HallRecordPagedResponseRequestResponse";
-import {   HallRecordRequestResponseFromJSON,
-    HallRecordRequestResponseToJSON}
-from "@infrastructure/apis/client/models/HallRecordRequestResponse";
-import {   HallUpdateRecordFromJSON,
-    HallUpdateRecordToJSON}
-from "@infrastructure/apis/client/models/HallUpdateRecord";
+import {
+    HallAddRecordFromJSON,
+    HallAddRecordToJSON
+}
+    from "@infrastructure/apis/client/models/HallAddRecord";
+import {
+    HallRecordPagedResponseRequestResponseFromJSON,
+    HallRecordPagedResponseRequestResponseToJSON
+}
+    from "@infrastructure/apis/client/models/HallRecordPagedResponseRequestResponse";
+import {
+    HallRecordRequestResponseFromJSON,
+    HallRecordRequestResponseToJSON
+}
+    from "@infrastructure/apis/client/models/HallRecordRequestResponse";
+import {
+    HallUpdateRecordFromJSON,
+    HallUpdateRecordToJSON
+}
+    from "@infrastructure/apis/client/models/HallUpdateRecord";
 export interface ApiHallAddPostRequest {
     hallAddRecord?: HallAddRecord;
 }
@@ -94,7 +102,7 @@ export class HallApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Hall/Add`,
+            path: `/api/catalog/Hall/Add`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -134,7 +142,7 @@ export class HallApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Hall/Delete/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            path: `/api/catalog/Hall/Delete/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -173,7 +181,7 @@ export class HallApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Hall/GetById/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            path: `/api/catalog/Hall/GetById/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -217,7 +225,7 @@ export class HallApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Hall/GetPage`,
+            path: `/api/catalog/Hall/GetPage`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -251,7 +259,7 @@ export class HallApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Hall/Update`,
+            path: `/api/catalog/Hall/Update`,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,

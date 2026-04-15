@@ -15,11 +15,11 @@
 
 import * as runtime from '../runtime';
 import type {
-  BookingAddRecord,
-  BookingRecordPagedResponseRequestResponse,
-  BookingRecordRequestResponse,
-  BookingUpdateRecord,
-  RequestResponse,
+    BookingAddRecord,
+    BookingRecordPagedResponseRequestResponse,
+    BookingRecordRequestResponse,
+    BookingUpdateRecord,
+    RequestResponse,
 } from '../models/index';
 import {
     BookingAddRecordFromJSON,
@@ -79,7 +79,7 @@ export class BookingApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Booking/Add`,
+            path: `/api/booking/Booking/Add`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -119,7 +119,7 @@ export class BookingApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Booking/Delete/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            path: `/api/booking/Booking/Delete/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -158,7 +158,7 @@ export class BookingApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Booking/GetById/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            path: `/api/booking/Booking/GetById/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -202,7 +202,7 @@ export class BookingApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Booking/GetPage`,
+            path: `/api/booking/Booking/GetPage`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -236,7 +236,7 @@ export class BookingApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Booking/Update`,
+            path: `/api/booking/Booking/Update`,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,

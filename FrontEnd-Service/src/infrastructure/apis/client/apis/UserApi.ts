@@ -95,7 +95,7 @@ export class UserApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/User/Add`,
+            path: `/api/auth/User/Add`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -135,7 +135,7 @@ export class UserApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/User/Delete/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            path: `/api/auth/User/Delete/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -174,7 +174,7 @@ export class UserApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/User/GetById/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            path: `/api/auth/User/GetById/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -218,7 +218,7 @@ export class UserApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/User/GetPage`,
+            path: `/api/auth/User/GetPage`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -252,7 +252,7 @@ export class UserApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/User/Update`,
+            path: `/api/auth/User/Update`,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,

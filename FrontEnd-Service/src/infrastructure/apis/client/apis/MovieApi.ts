@@ -15,7 +15,7 @@
 
 import * as runtime from '../runtime';
 import type {
-  RequestResponse,
+    RequestResponse,
 } from '../models/index';
 
 import type {
@@ -36,18 +36,26 @@ import {
     RequestResponseToJSON,
 } from '../models/index';
 
-import {   MovieAddRecordFromJSON,
-    MovieAddRecordToJSON}
-from "@infrastructure/apis/client/models/MovieAddRecord";
-import {   MovieRecordPagedResponseRequestResponseFromJSON,
-    MovieRecordPagedResponseRequestResponseToJSON}
-from "@infrastructure/apis/client/models/MovieRecordPagedResponseRequestResponse";
-import {   MovieRecordRequestResponseFromJSON,
-    MovieRecordRequestResponseToJSON}
-from "@infrastructure/apis/client/models/MovieRecordRequestResponse";
-import {   MovieUpdateRecordFromJSON,
-    MovieUpdateRecordToJSON}
-from "@infrastructure/apis/client/models/MovieUpdateRecord";
+import {
+    MovieAddRecordFromJSON,
+    MovieAddRecordToJSON
+}
+    from "@infrastructure/apis/client/models/MovieAddRecord";
+import {
+    MovieRecordPagedResponseRequestResponseFromJSON,
+    MovieRecordPagedResponseRequestResponseToJSON
+}
+    from "@infrastructure/apis/client/models/MovieRecordPagedResponseRequestResponse";
+import {
+    MovieRecordRequestResponseFromJSON,
+    MovieRecordRequestResponseToJSON
+}
+    from "@infrastructure/apis/client/models/MovieRecordRequestResponse";
+import {
+    MovieUpdateRecordFromJSON,
+    MovieUpdateRecordToJSON
+}
+    from "@infrastructure/apis/client/models/MovieUpdateRecord";
 
 
 export interface ApiMovieAddPostRequest {
@@ -95,7 +103,7 @@ export class MovieApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Movie/Add`,
+            path: `/api/catalog/Movie/Add`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -135,7 +143,7 @@ export class MovieApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Movie/Delete/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            path: `/api/catalog/Movie/Delete/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -174,7 +182,7 @@ export class MovieApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Movie/GetById/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            path: `/api/catalog/Movie/GetById/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -218,7 +226,7 @@ export class MovieApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Movie/GetPage`,
+            path: `/api/catalog/Movie/GetPage`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -252,7 +260,7 @@ export class MovieApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Movie/Update`,
+            path: `/api/catalog/Movie/Update`,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,

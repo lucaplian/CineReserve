@@ -17,7 +17,7 @@ namespace MobyLabWebProgramming.Api.Controllers;
 /// Inject the required services through the constructor.
 /// </summary>
 [ApiController] // This attribute specifies for the framework to add functionality to the controller such as binding multipart/form-data.
-[Route("api/[controller]/[action]")] // The Route attribute prefixes the routes/url paths with template provides as a string, the keywords between [] are used to automatically take the controller and method name.
+[Route("api/booking/[controller]/[action]")] // The Route attribute prefixes the routes/url paths with template provides as a string, the keywords between [] are used to automatically take the controller and method name.
 
 public class FeedbackController(ILogger<FeedbackController> logger, IFeedbackService FeedbackService) 
     : BaseResponseController(logger)

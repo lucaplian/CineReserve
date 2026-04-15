@@ -96,7 +96,7 @@ export class ScreeningApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Screening/Add`,
+            path: `/api/catalog/Screening/Add`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -136,7 +136,7 @@ export class ScreeningApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Screening/Delete/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            path: `/api/catalog/Screening/Delete/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -175,7 +175,7 @@ export class ScreeningApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Screening/GetById/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            path: `/api/catalog/Screening/GetById/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -219,7 +219,7 @@ export class ScreeningApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Screening/GetPage`,
+            path: `/api/catalog/Screening/GetPage`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -253,7 +253,7 @@ export class ScreeningApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Screening/Update`,
+            path: `/api/catalog/Screening/Update`,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,

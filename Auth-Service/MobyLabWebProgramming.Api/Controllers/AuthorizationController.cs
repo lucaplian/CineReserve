@@ -12,7 +12,7 @@ namespace MobyLabWebProgramming.Api.Controllers;
 /// Inject the required services through the constructor.
 /// </summary>
 [ApiController] // This attribute specifies for the framework to add functionality to the controller such as binding multipart/form-data.
-[Route("api/[controller]/[action]")] // The Route attribute prefixes the routes/url paths with template provides as a string, the keywords between [] are used to automatically take the controller and method name.
+[Route("api/auth/[controller]/[action]")] // The Route attribute prefixes the routes/url paths with template provides as a string, the keywords between [] are used to automatically take the controller and method name.
 public class AuthorizationController(ILogger<AuthorizationController> logger, IUserService userService) : BaseResponseController(logger) // The controller must inherit ControllerBase or its derivations, in this case BaseResponseController.
 {
     /// <summary>

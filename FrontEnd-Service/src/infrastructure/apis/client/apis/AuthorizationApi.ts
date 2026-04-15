@@ -71,7 +71,7 @@ export class AuthorizationApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Authorization/Login`,
+            path: `/api/auth/Authorization/Login`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -106,7 +106,7 @@ export class AuthorizationApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/Authorization/Register`,
+            path: `/api/auth/Authorization/Register`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
