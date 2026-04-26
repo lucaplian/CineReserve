@@ -1,0 +1,29 @@
+# Changelog
+
+Luca Plian:
+
+### Added
+- Prometheus for metrics collection
+- Grafana for visualization of the metrics
+- Docker Compose setup for all services
+- PGAdmin for managing the PostgreSQL database
+- Portainer for visualising and managing the Docker cluster
+- Frontend (Vite + React)
+- Backend (.NET 8)
+
+Beiu Alexandru:
+
+### Added
+- Added Kong API Gateway to manage routing between microservices (only to Docker Compose for now)
+- Added Kong PostGreSQL database and migrations
+- Added the following routes that Kong will expect requests:
+    - AuthService to /auth/[path] 
+    - CatalogService to /catalog/[path]
+    - BookingService to /booking/[path]
+
+### Changed
+- Updated frontend routes so that all requests go through Kong (localhost:8000)
+- Updated Docker Compose file to include Kong services and network
+
+### Fixed
+- Some typos for romanian translation
