@@ -12,7 +12,7 @@ public class AuthServiceClient(HttpClient httpClient)
     
     public async Task<UserRecord?> GetUser(Guid userId)
     {
-        var response = await httpClient.GetAsync($"/api/User/GetById/{userId}");
+        var response = await httpClient.GetAsync($"/api/auth/User/GetById/{userId}");
         if (!response.IsSuccessStatusCode) return null;
         var json = await response.Content.ReadAsStringAsync();
         var doc = JsonDocument.Parse(json);
