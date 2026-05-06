@@ -6,6 +6,7 @@ using MobyLabWebProgramming.Infrastructure.Errors;
 using MobyLabWebProgramming.Infrastructure.Repositories.Interfaces;
 using MobyLabWebProgramming.Infrastructure.Requests;
 using MobyLabWebProgramming.Infrastructure.Responses;
+using MobyLabWebProgramming.Infrastructure.Authorization;
 using MobyLabWebProgramming.Services.Abstractions;
 using MobyLabWebProgramming.Services.Constants;
 using MobyLabWebProgramming.Services.DataTransferObjects;
@@ -43,7 +44,8 @@ public class UserService(IRepository<WebAppDatabaseContext> repository, ILoginSe
         {
             return ServiceResponse.FromError<LoginResponseRecord>(CommonErrors.UserNotFound); // Pack the proper error as the response.
         }
-
+        Console.WriteLine($"[DEBUG] Login Input Password: {login.Password}");
+        Console.WriteLine($"[DEBUG] Database Password:    {result.Password}");
         if (result.Password != login.Password) // Verify if the password hash of the request is the same as the one in the database.
         {
             return ServiceResponse.FromError<LoginResponseRecord>(new(HttpStatusCode.BadRequest, "Wrong password!", ErrorCodes.WrongPassword));
@@ -84,7 +86,7 @@ public class UserService(IRepository<WebAppDatabaseContext> repository, ILoginSe
             Email = user.Email,
             Name = user.Name,
             Role = UserRoleEnum.Client,
-            Password = user.Password
+            Password = PasswordUtils.HashPassword(user.Password)
         };
         await repository.AddAsync(newUser, cancellationToken); // A new entity is created and persisted in the database.
 
