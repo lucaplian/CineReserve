@@ -1,0 +1,10 @@
+pt compose:
+docker compose up -d
+docker compose down
+
+pt swarm:
+
+docker stack deploy -c docker-compose.yml cinereserve
+docker stack ps cinereserve // procese
+
+docker container prune -f // se sterge tot
