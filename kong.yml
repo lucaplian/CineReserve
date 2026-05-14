@@ -1,0 +1,31 @@
+_format_version: "3.0"
+
+services:
+  - name: auth-service
+    url: http://cinereserve-auth-service:8080
+    routes:
+      - name: auth-route
+        paths:
+          - /api/auth
+        strip_path: false
+
+  - name: catalog-service
+    url: http://cinereserve-catalog-service:8080
+    routes:
+      - name: catalog-route
+        paths:
+          - /api/catalog
+        strip_path: false
+  - name: booking-service
+    url: http://cinereserve-booking-service:8080
+    routes:
+      - name: booking-route
+        paths:
+          - /api/booking
+        strip_path: false
+  - name: frontend-service
+    url: http://cinereserve-frontend-service:80
+    routes:
+      - name: frontend-route
+        paths:
+          - /

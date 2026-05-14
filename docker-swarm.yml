@@ -1,21 +1,45 @@
 version: "3.8"
 
 services:
-  prometheus:
-    image: prom/prometheus
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+  kong:
+    image: kong:latest
+    environment:
+      KONG_DATABASE: "off"
+      KONG_DECLARATIVE_CONFIG: /kong.yml
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001
+    configs:
+      - source: kong_config
+        target: /kong.yml
     ports:
-      - "9090:9090"
+      - "8000:8000"
+      - "8001:8001"
     networks:
-      - cinereserve-monitoring-network
-      - cinereserve-auth-network
-      - cinereserve-catalog-network
-      - cinereserve-booking-network
+      - cinereserve-gateway-network
     deploy:
       replicas: 1
       restart_policy:
         condition: on-failure
+
+  prometheus:
+        image: prom/prometheus
+        configs:
+        - source: prometheus_config
+          target: /prometheus.yml
+        ports:
+            - 9090:9090
+        networks:
+            - cinereserve-monitoring-network
+            - cinereserve-auth-network
+            - cinereserve-catalog-network
+            - cinereserve-booking-network
+        deploy:
+          replicas: 1
+          restart_policy:
+            condition: on-failure
 
   grafana:
     image: grafana/grafana:latest
@@ -28,10 +52,11 @@ services:
       restart_policy:
         condition: on-failure
 
+
   cinereserve-auth-db:
     image: postgres:13.2-alpine
     ports:
-      - "5433:5432"
+      - 5433:5432
     environment:
       POSTGRES_USER: cinereserve-auth
       POSTGRES_DB: cinereserve-auth
@@ -41,14 +66,14 @@ services:
     networks:
       - cinereserve-auth-network
     deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
+      placement:
+        constraints:
+          - node.role == manager
 
   cinereserve-booking-db:
     image: postgres:13.2-alpine
     ports:
-      - "5435:5432"
+      - 5435:5432
     environment:
       POSTGRES_USER: cinereserve-booking
       POSTGRES_DB: cinereserve-booking
@@ -58,14 +83,14 @@ services:
     networks:
       - cinereserve-booking-network
     deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
+      placement:
+        constraints:
+          - node.role == manager
 
   cinereserve-catalog-db:
     image: postgres:13.2-alpine
     ports:
-      - "5434:5432"
+      - 5434:5432
     environment:
       POSTGRES_USER: cinereserve-catalog
       POSTGRES_DB: cinereserve-catalog
@@ -75,29 +100,29 @@ services:
     networks:
       - cinereserve-catalog-network
     deploy:
+      placement:
+        constraints:
+          - node.role == manager
+    
+  cinereserve-auth-service:
+    image: alexe1289/cinereserve-auth:latest
+    deploy:
       replicas: 1
       restart_policy:
-        condition: on-failure
-
-  cinereserve-auth-service:
-    image: lucaplian6650/cinereserve-auth:latest
-    ports:
-      - "5001:8080"
+        condition: on-failure 
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__WebAppDatabase=Host=cinereserve-auth-db;Port=5432;Database=cinereserve-auth;Username=cinereserve-auth;Password=cinereserve-auth
     networks:
       - cinereserve-auth-network
       - cinereserve-gateway-network
+  
+  cinereserve-catalog-service:
+    image: alexe1289/cinereserve-catalog:latest
     deploy:
       replicas: 1
       restart_policy:
-        condition: on-failure 
-
-  cinereserve-catalog-service:
-    image: lucaplian6650/cinereserve-catalog:latest
-    ports:
-      - "5002:8080"
+        condition: on-failure
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__WebAppDatabase=Host=cinereserve-catalog-db;Port=5432;Database=cinereserve-catalog;Username=cinereserve-catalog;Password=cinereserve-catalog
@@ -105,15 +130,13 @@ services:
       - cinereserve-catalog-network
       - cinereserve-gateway-network
       - cinereserve-auth-network
+
+  cinereserve-booking-service:
+    image: alexe1289/cinereserve-booking:latest
     deploy:
       replicas: 1
       restart_policy:
         condition: on-failure
-
-  cinereserve-booking-service:
-    image: lucaplian6650/cinereserve-booking:latest
-    ports:
-      - "5003:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__WebAppDatabase=Host=cinereserve-booking-db;Port=5432;Database=cinereserve-booking;Username=cinereserve-booking;Password=cinereserve-booking
@@ -121,33 +144,29 @@ services:
       - cinereserve-booking-network
       - cinereserve-gateway-network
       - cinereserve-auth-network
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
 
   cinereserve-frontend-service:
-    image: lucaplian6650/cinereserve-frontend:latest
-    ports:
-      - "80:80"
-    networks:
-      - cinereserve-gateway-network
+    image: alexe1289/cinereserve-frontend:latest
     deploy:
       replicas: 1
       restart_policy:
         condition: on-failure
+    networks:
+      - cinereserve-gateway-network
 
   pgadmin:
     image: dpage/pgadmin4
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@default.com
       - PGADMIN_DEFAULT_PASSWORD=default
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
     ports:
-      - "5050:80"
+           - 5050:80
     networks:
-      - cinereserve-booking-network
-      - cinereserve-auth-network
-      - cinereserve-catalog-network
+            - cinereserve-booking-network
+            - cinereserve-auth-network
+            - cinereserve-catalog-network
     deploy:
       replicas: 1
       restart_policy:
@@ -157,20 +176,22 @@ volumes:
   cinereserve-auth-db-vol:
   cinereserve-catalog-db-vol:
   cinereserve-booking-db-vol:
+  pgadmin-data:
+
+configs:
+  kong_config:
+    file: ./kong.yml
+  prometheus_config:
+    file: ./prometheus.yml
 
 networks:
   cinereserve-booking-network:
     driver: overlay
-    attachable: true
   cinereserve-auth-network:
     driver: overlay
-    attachable: true
   cinereserve-catalog-network:
     driver: overlay
-    attachable: true
   cinereserve-gateway-network:
     driver: overlay
-    attachable: true
   cinereserve-monitoring-network:
     driver: overlay
-    attachable: true
