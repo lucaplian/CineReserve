@@ -5,12 +5,21 @@ scrape_configs:
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']
+
   - job_name: 'auth-service'
-    static_configs:
-      - targets: ['cinereserve-auth-service:8080']
+    dns_sd_configs:
+      - names: ['tasks.cinereserve-auth-service']
+        type: 'A'
+        port: 8080
+
   - job_name: 'catalog-service'
-    static_configs:
-      - targets: ['cinereserve-catalog-service:8080']
+    dns_sd_configs:
+      - names: ['tasks.cinereserve-catalog-service']
+        type: 'A'
+        port: 8080
+
   - job_name: 'booking-service'
-    static_configs:
-      - targets: ['cinereserve-booking-service:8080']
+    dns_sd_configs:
+      - names: ['tasks.cinereserve-booking-service']
+        type: 'A'
+        port: 8080

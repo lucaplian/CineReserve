@@ -4,7 +4,15 @@ docker compose down
 
 pt swarm:
 
-docker stack deploy -c docker-compose.yml cinereserve
+docker stack deploy -c docker-swarm.yml cinereserve
 docker stack ps cinereserve // procese
 
+docker stack rm cinereserve
+
 docker container prune -f // se sterge tot
+
+
+// ca sa vezi stadiul unui serviciu in swam
+docker service ps cinereserve-stack_kong --no-trunc
+
+docker node rm $(docker node ls -q) // se sterg toate nodurile

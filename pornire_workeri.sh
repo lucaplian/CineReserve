@@ -1,17 +1,27 @@
-# 1. Extragem automat token-ul și IP-ul managerului
+#!/bin/bash
+
+set -e
+
 TOKEN=$(docker swarm join-token -q worker)
 MANAGER_IP=$(docker info -f '{{.Swarm.NodeAddr}}')
 
-# 2. Creăm și conectăm cei 3 workeri într-o buclă rapidă
+echo "Manager: $MANAGER_IP"
+
 for i in 1 2 3; do
-  echo "Pornim worker-$i..."
-  docker run -d --privileged --name worker-$i docker:dind
-  
-  echo "Așteptăm 3 secunde să pornească Docker în interior..."
-  sleep 3
-  
-  echo "Conectăm worker-$i la cluster..."
-  docker exec worker-$i docker swarm join --token $TOKEN $MANAGER_IP:2377
+  NAME="worker-$i"
+
+  echo "Starting $NAME..."
+
+  docker run -d \
+    --privileged \
+    --name $NAME \
+    docker:dind
+
+  sleep 5
+
+  echo "Joining Swarm..."
+  docker exec $NAME docker swarm join --token $TOKEN $MANAGER_IP:2377
+
 done
 
-echo "Gata! Verifică nodurile cu: docker node ls"
+echo "Done. Now run: docker node ls"
